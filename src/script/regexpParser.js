@@ -1,7 +1,7 @@
 export default function funcParser(string){
     if(typeof(string) !== 'string') return null
 
-    let mainRegEx = /(?<yShift>^(?:\+|\-){0,1}\d*(?:\/\d*){0,}(?=\+|\-)){0,}(?<funcSign>\+|\-){0,}(?<yMult>\d*(pi){0,1}(?:\/\d*){0,}){0,}(?<func>cos|sin|tg|ctg)\((?<xMult>\d(?:\/\d*){0,}){0,}x(?<xShift>(?:\+|\-){1}\d*(pi){0,1}(?:\/\d*){0,}){0,}\)/gmi
+    let mainRegEx = /(?<yShift>^(?:\+|\-){0,1}\d*(?:\/\d*){0,}(?=\+|\-)){0,}(?<funcSign>\+|\-){0,}(?<yMult>\d*(pi){0,1}(?:\/\d*){0,}){0,}(?<func>cos|sin|tg|ctg)\((?<xMult>\d*(?:x)(?:\/\d*){0,}){0,}(?<xShift>(?:\+|\-){1}\d*(?:pi){0,1}(?:\/\d*){0,}){0,}\)/gmi
 
     let parsingResult = mainRegEx.exec(string)
 
@@ -37,7 +37,7 @@ export default function funcParser(string){
 
 
 function fractionParser(fraction) {
-    let regExp = /(?<numerator>(?:\+|\-){0,1}\d*)(?<pi>pi){0,1}(?:\^(?<exponent>\d*)){0,}(?:\/(?<denominator>\d*)){0,}/gi
+    let regExp = /^(?<numerator>(?:\+|\-){0,1}\d*)(?<pi>pi){0,1}(?:x){0,1}(?:\^(?<exponent>\d*)){0,}(?:\/(?<denominator>\d*)){0,}/gi
     let parsingResult = regExp.exec(fraction)
     return parsingResult?calculator(parsingResult.groups):null
 }

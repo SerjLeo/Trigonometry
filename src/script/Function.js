@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 class Function {
-    constructor(func, canvas, yShift = 0, xShift = 0, xMult = 1, yMult = 1){
+    constructor(func, canvas, xShift = 0, yShift = 0, xMult = 1, yMult = 1){
         this.func = func || Math.sin
         this.yShift = yShift
         this.xShift = xShift
@@ -10,11 +10,10 @@ class Function {
         this.canvas = canvas
         this.ctx = this.canvas.getContext('2d')
         this.xPos = 0
-        this.yPos = -this.yShift - this.yMult*50*this.func(this.xMult*this.xPos/12 + this.xShift)
+        this.yPos = -this.yShift*50 - this.yMult*50*this.func(this.xMult*this.xPos/12 + this.xShift)
         this.startPoint = [50, this.canvas.height/2]
         this.id = uuidv4()
         this.timer = null
-        
         this.draw = this.draw.bind(this)
         this.start = this.start.bind(this)
         this.init = this.init.bind(this)
@@ -27,11 +26,10 @@ class Function {
         this.ctx.lineWidth = 2
         this.ctx.lineJoin = 'round'
         this.ctx.lineCap = 'round'
-
         this.ctx.beginPath()
         this.ctx.moveTo(this.xPos + this.startPoint[0], this.yPos + this.startPoint[1])
         this.xPos = this.xPos + 0.1
-        this.yPos = -this.yShift - this.yMult*50*this.func(this.xMult*this.xPos/12 + this.xShift)
+        this.yPos = -50*this.yShift - this.yMult*50*this.func(this.xMult*this.xPos/12 + this.xShift)
         if(Math.abs(this.yPos) > this.canvas.height/2) return null
         this.ctx.lineTo(this.xPos + this.startPoint[0], this.yPos + this.startPoint[1])
         this.ctx.stroke()
@@ -56,6 +54,9 @@ class Function {
 
     getTimer(){
         return {id: this.id, timer: this.clearTimer}
+    }
+    getId(){
+        return this.id
     }
 }
 

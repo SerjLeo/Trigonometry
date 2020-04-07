@@ -89,7 +89,10 @@ export default class Canvas {
     }
 
     deleteFunction(id){
+        this.clearTimeouts()
         let removeIndex = this.timers.findIndex(el => el.id === id)
         this.timers.splice(removeIndex, 1)
+        removeIndex = this.initiators.findIndex(el => el.id === id)
+        this.initiators.splice(removeIndex, 1)
     }
 }

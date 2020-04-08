@@ -1,11 +1,14 @@
-import '../styles/styles.css'
+import '../styles/style.scss'
 import Canvas from './Canvas'
 import FunctionFactory from './Function'
 import funcParser from './regexpParser'
 import Toolbar from './Toolbar'
+import ColorGenerator from './ColorGenerator'
 
 //Components
 import AddIcon from './Components/Add'
+
+const colorGenerator = new ColorGenerator()
 
 const canvas = document.querySelector('#canvas')
 const drawCanvas = new Canvas(canvas, 5)
@@ -22,15 +25,15 @@ document.querySelector('.input').addEventListener('input', e => {
 document.querySelector('.add-btn').addEventListener('click', e => {
     e.preventDefault()
 
-    const result = funcParser(input)
+    const result = funcParser(input.toLowerCase())
     let {_yMult, _yShift, _xMult, _xShift, func} = result
     let newFunction
-    functionFactory.create(func, canvas, _xShift, _yShift, _xMult, _yMult)
+    functionFactory.create(func, canvas, colorGenerator.generateColor(), _xShift, _yShift, _xMult, _yMult)
         .then(func => {
             newFunction = func
             drawCanvas.addInitiator(newFunction.init())
             drawCanvas.addTimer(newFunction.getTimer())
-            new Toolbar(input, newFunction.getId(), drawCanvas)
+            new Toolbar(input.toLowerCase(), newFunction.getId(), newFunction.color, drawCanvas, colorGenerator)
             document.querySelector('.input').value = ''
             input = ''
         })

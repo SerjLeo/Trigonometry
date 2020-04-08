@@ -1,0 +1,267 @@
+@import '~normalize.css';
+@import 'fonts';
+@import 'palette';
+*{
+    outline: none;
+}
+body {
+    font-family: 'Baloo', 'Roboto', sans-serif;
+    background: $black-color;
+    color: $primary-color;
+    outline: none;
+}
+
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    animation: header-animation 4s linear forwards infinite;
+    text-shadow: 0 0 25px $primary-color;
+    cursor: pointer;
+    /* -webkit-box-reflect: below 1px; */
+}
+
+@keyframes header-animation {
+    0% {
+        text-shadow: 0 0 25px $primary-color;
+    }
+    20% {
+        text-shadow: 0 0 35px $primary-color;
+    }
+    40% {
+        text-shadow: 0 0 45px $primary-color;
+    }
+    60% {
+        text-shadow: 0 0 25px $primary-color;
+    }
+    80% {
+        text-shadow: 0 0 15px $primary-color;
+    }
+    100% {
+        text-shadow: 0 0 25px $primary-color;
+    }
+}
+
+#canvas {
+    border: 2px solid $black-color;
+    background: $white-color;
+    width: 75vw;
+    height: 100%;
+    margin: 10px;
+    cursor: crosshair;
+}
+
+.header {
+    max-height: 15vh;
+}
+
+.add-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.add-btn {
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    margin-left: 5px;
+    color: $white-color;
+    background: $secondary-color;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    color: $black-color;
+    background: $hover-color;
+}
+
+.buttons {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.start-btn,
+.stop-btn,
+.refresh-btn{
+    margin-left: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.start-btn svg,
+.stop-btn svg,
+.refresh-btn svg{
+    fill:$white-color;
+}
+.start-btn:hover svg,
+.stop-btn:hover svg,
+.refresh-btn:hover svg{
+    fill:$black-color;
+}
+.start-btn{
+    margin-left: 0;
+}
+.workspace {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    width: 100%;
+}
+
+.toolbar {
+    padding: 10px;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar_card {
+    display: flex;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: $secondary-color;
+}
+
+.toolbar_card:hover {
+    -webkit-box-shadow: 1px 5px 10px 3px $primary-color;
+    -moz-box-shadow: 1px 5px 10px 3px $primary-color;
+    box-shadow: 1px 5px 10px 3px $primary-color;
+    transform: translateY(-5px);
+}
+
+.toolbar_card_text{
+    font-size: 22px;
+}
+.toolbar_card_btn{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.toolbar_card_color{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 5px;
+}
+
+/* Button Component */
+.custom_btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease;
+    transform-origin: center;
+    background: $secondary-color;
+}
+
+.custom_btn_icon {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    fill: $white-color;
+    transition: 0.3s ease-in;
+}
+
+.custom_btn:hover {
+    background-color: $hover-color;
+    cursor: pointer;
+}
+
+.custom_btn:hover .custom_btn_icon{
+    fill: $black-color;
+}
+
+.close_icon {
+    width: 35%;
+    height: 35%;
+}
+
+/* Input*/
+
+.input-field {
+    position: relative;
+    height: 40px;
+    width: 100%;
+}
+.input-field input[type="text"] {
+    position: absolute;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 20px;
+    color: $white-color;
+    width: 100%;
+}
+.input-field label {
+    position: absolute;
+    top: 0; left: 0;
+    color: #555;
+    pointer-events: none;
+    display: block;
+    transition: 0.5s;
+}
+.input-field span{
+    position: absolute;
+    bottom: 0; right: 0;
+    background-color: #555;
+    width: 100%;
+    display: block;
+    height: 2px;
+}
+.input-field span:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $primary-color;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+}
+.input-field input[type="text"]:focus ~ span:before,
+.input-field input[type="text"]:valid ~ span:before {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+}
+
+.input-field input[type="text"]:focus + label,
+.input-field input[type="text"]:valid + label {
+    transform: translateY(-35px);
+    font-size: 14px;
+    color: $primary-color;
+    padding: 2px 6px;
+}

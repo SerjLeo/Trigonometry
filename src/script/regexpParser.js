@@ -27,10 +27,10 @@ export default function funcParser(string){
     xMult ?_xMult = fractionParser(xMult):null
     xShift ?_xShift = fractionParser(xShift):null
 
-    console.log('yMult',_yMult)
-    console.log('xMult',_xMult)
-    console.log('_xShift',_xShift)
-    console.log('_yShift',_yShift)
+    // console.log('yMult',_yMult)
+    // console.log('xMult',_xMult)
+    // console.log('_xShift',_xShift)
+    // console.log('_yShift',_yShift)
 
     return func?{func, _xMult,_yMult, _xShift, _yShift}:new Error('Wrong function')
 }

@@ -30,22 +30,22 @@ h1 {
 
 @keyframes header-animation {
     0% {
-        text-shadow: 0 0 25px $primary-color;
+        text-shadow: 0 0 15px $white-color;
     }
     20% {
-        text-shadow: 0 0 35px $primary-color;
+        text-shadow: 0 0 30px $white-color;
     }
     40% {
-        text-shadow: 0 0 45px $primary-color;
+        text-shadow: 0 0 25px $white-color;
     }
     60% {
-        text-shadow: 0 0 25px $primary-color;
+        text-shadow: 0 0 10px $white-color;
     }
     80% {
-        text-shadow: 0 0 15px $primary-color;
+        text-shadow: 0 0 25px $white-color;
     }
     100% {
-        text-shadow: 0 0 25px $primary-color;
+        text-shadow: 0 0 15px $white-color;
     }
 }
 
@@ -60,6 +60,9 @@ h1 {
 
 .header {
     max-height: 15vh;
+    width: 100%;
+    color: $white-color;
+    background: $bg-color;
 }
 
 .add-form{
